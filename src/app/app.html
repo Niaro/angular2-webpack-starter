@@ -1,0 +1,20 @@
+<header class="h2">
+  <div class="title">Trood</div>
+  <div class="menu" *ngIf="appState.get('selectedSummary')">
+      <a class="btn btn-primary" router-active="active" [routerLink]=" [appState.get('selectedSummary'), 'Reports'] ">Отчеты</a>
+      <a class="btn btn-primary" router-active="active">События</a>
+      <!-- <a class="pull-right" [routerLink]=" [appState.get('selectedSummary'), 'Events'] ">События</a> -->
+  </div>
+</header>
+
+<main>
+  <router-outlet></router-outlet>
+</main>
+
+<footer></footer>
+
+<summary-selectors *ngIf="!appState.get('selectedSummary') && !router.navigating">
+  <a class="btn btn-primary" [routerLink]=" ['Retail'] ">Сводка по ритейлу</a>
+  <a class="btn btn-primary" [routerLink]=" ['Production'] ">Сводка по производству</a>
+  <a class="btn btn-primary" [routerLink]=" ['Distribution'] ">Сводка по дистрибуция</a>
+</summary-selectors>

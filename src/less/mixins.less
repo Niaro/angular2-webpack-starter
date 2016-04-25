@@ -1,0 +1,392 @@
+.clearfix() {
+  &:after {
+    content: "";
+    display: table;
+    clear  : both;
+  }
+}
+
+.vertical-align() {
+  position         : relative;
+  top              : 50%;
+  -webkit-transform: translateY(-50%);
+  -ms-transform    : translateY(-50%);
+  transform        : translateY(-50%);
+}
+
+.linear-gradient(@angle, @from, @to) {
+  background-color: average(@from, @to);
+  background-image: linear-gradient(@angle, @from, @to);
+}
+
+.vertical-gradient(@from, @to) {
+  background-color: average(@from, @to);
+  background-image: linear-gradient(to bottom, @from, @to);
+}
+
+.horizontal-gradient(@from, @to) {
+  background-color: average(@from, @to);
+  background-image: linear-gradient(to right, @from, @to);
+}
+
+.placeholder-color(@color) {
+  &:-ms-input-placeholder {
+    color: @color;
+  }
+
+  &::-moz-placeholder {
+    color: @color;
+  }
+
+  &::-webkit-input-placeholder {
+    color: @color;
+  }
+}
+
+.filter(@value) {
+  -webkit-filter: @value;
+  filter: @value;
+}
+
+// Flex
+.flex-container() {
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+}
+
+.flex-container-inline() {
+  display: -ms-inline-flexbox;
+  display: -webkit-inline-flex;
+  display: inline-flex;
+}
+
+.flex-container(@flow) {
+  .flex-container();
+  -ms-flex-flow    : @flow;
+  -webkit-flex-flow: @flow;
+  flex-flow        : @flow;
+}
+
+.flex-container-inline(@flow) {
+  .flex-container-inline();
+  -ms-flex-flow    : @flow;
+  -webkit-flex-flow: @flow;
+  flex-flow        : @flow;
+}
+
+.flex-container-float-middle(@type: row nowrap, @pos: absolute)  {
+  position: @pos;
+  top     : 0;
+  bottom  : 0;
+  left    : 0;
+  right   : 0;
+  z-index : 111111111111111111111111;
+  .flex-container(@type);
+  .align-items(center);
+  .justify-content(center);
+}
+
+.flex(@value) {
+  -ms-flex    : @value;
+  -webkit-flex: @value;
+  flex        : @value;
+}
+
+.flex-shrink(@value) {
+  -webkit-flex-shrink: @value;
+  flex-shrink        : @value; // for compatibility
+}
+
+.flex-wrap(@value) {
+  -ms-flex-wrap    : @value;
+  -webkit-flex-wrap: @value;
+  flex-wrap        : @value;
+}
+
+.flex-pull() {
+  &.pull-left {
+    float: none;
+    .justify-content(flex-start);
+  }
+
+  &.pull-right {
+    float: none;
+    .justify-content(flex-end);
+  }
+
+  &.pull-center {
+    .justify-content(center);
+  }
+}
+
+.justify-content(@value) {
+  -webkit-justify-content: @value;
+  justify-content        : @value;
+
+  & when (@value = flex-start) {
+    -ms-flex-pack: start;
+  }
+
+  & when (@value = flex-end) {
+    -ms-flex-pack: end;
+  }
+
+  & when (@value = center) {
+    -ms-flex-pack: center;
+  }
+
+  & when (@value = space-between) {
+    -ms-flex-pack: justify;
+  }
+
+  & when (@value = space-around) {
+    -ms-flex-pack: distribute;
+  }
+}
+
+.align-items(@value) {
+  -webkit-align-items: @value;
+  align-items        : @value;
+
+  & when (@value = flex-start) {
+    -ms-flex-align: start;
+  }
+
+  & when (@value = flex-end) {
+    -ms-flex-align: end;
+  }
+
+  & when (@value = center),
+  (@value = baseline),
+  (@value = stretch) {
+    -ms-flex-align: @value;
+  }
+}
+
+.align-self(@value) {
+  -webkit-align-self: @value;
+  align-self        : @value;
+
+  & when (@value = flex-start) {
+    -ms-flex-item-align: start;
+  }
+
+  & when (@value = flex-end) {
+    -ms-flex-item-align: end;
+  }
+
+  & when (@value = center),
+  (@value = baseline),
+  (@value = stretch) {
+    -ms-flex-item-align: @value;
+  }
+}
+
+.align-content(@value) {
+  -webkit-align-content: @value;
+  align-content        : @value;
+
+  & when (@value = flex-start) {
+    -ms-flex-line-pack: start;
+  }
+
+  & when (@value = flex-end) {
+    -ms-flex-line-pack: end;
+  }
+
+  & when (@value = center) {
+    -ms-flex-line-pack: center;
+  }
+
+  & when (@value = space-between) {
+    -ms-flex-line-pack: justify;
+  }
+
+  & when (@value = space-around) {
+    -ms-flex-line-pack: distribute;
+  }
+}
+
+.order(@value) {
+  -ms-flex-order: @value;
+  -webkit-order : @value;
+  order         : @value;
+}
+
+// Border-radius
+.border-top-radius(@radius) {
+  border-top-left-radius : @radius;
+  border-top-right-radius: @radius;
+}
+
+.border-right-radius(@radius) {
+  border-top-right-radius   : @radius;
+  border-bottom-right-radius: @radius;
+}
+
+.border-bottom-radius(@radius) {
+  border-bottom-left-radius : @radius;
+  border-bottom-right-radius: @radius;
+}
+
+.border-left-radius(@radius) {
+  border-top-left-radius   : @radius;
+  border-bottom-left-radius: @radius;
+}
+
+// Animations
+.animation(@animation) {
+  -webkit-animation: @animation;
+  animation        : @animation;
+}
+
+.animation-name(@name) {
+  -webkit-animation-name: @name;
+  animation-name        : @name;
+}
+
+.animation-duration(@duration) {
+  -webkit-animation-duration: @duration;
+  animation-duration        : @duration;
+}
+
+.animation-timing-function(@timing-function) {
+  -webkit-animation-timing-function: @timing-function;
+  animation-timing-function        : @timing-function;
+}
+
+.animation-delay(@delay) {
+  -webkit-animation-delay: @delay;
+  animation-delay        : @delay;
+}
+
+.animation-iteration-count(@iteration-count) {
+  -webkit-animation-iteration-count: @iteration-count;
+  animation-iteration-count        : @iteration-count;
+}
+
+.animation-direction(@direction) {
+  -webkit-animation-direction: @direction;
+  animation-direction        : @direction;
+}
+
+.animation-fill-mode(@fill-mode) {
+  -webkit-animation-fill-mode: @fill-mode;
+  animation-fill-mode        : @fill-mode;
+}
+
+// Transformations
+.transform(@value) {
+  -webkit-transform: @value;
+  -ms-transform    : @value; // IE9 only
+  transform        : @value;
+}
+
+.scale(@ratio) {
+  -webkit-transform: scale(@ratio);
+  -ms-transform    : scale(@ratio); // IE9 only
+  transform        : scale(@ratio);
+}
+
+.scale(@ratioX; @ratioY) {
+  -webkit-transform: scale(@ratioX, @ratioY);
+  -ms-transform    : scale(@ratioX, @ratioY); // IE9 only
+  transform        : scale(@ratioX, @ratioY);
+}
+
+.scaleX(@ratio) {
+  -webkit-transform: scaleX(@ratio);
+  -ms-transform    : scaleX(@ratio); // IE9 only
+  transform        : scaleX(@ratio);
+}
+
+.scaleY(@ratio) {
+  -webkit-transform: scaleY(@ratio);
+  -ms-transform    : scaleY(@ratio); // IE9 only
+  transform        : scaleY(@ratio);
+}
+
+.skew(@x; @y) {
+  -webkit-transform: skewX(@x) skewY(@y);
+  -ms-transform    : skewX(@x) skewY(@y); // See https://github.com/twbs/bootstrap/issues/4885; IE9+
+  transform        : skewX(@x) skewY(@y);
+}
+
+.translate(@x; @y) {
+  -webkit-transform: translate(@x, @y);
+  -ms-transform    : translate(@x, @y); // IE9 only
+  transform        : translate(@x, @y);
+}
+
+.translate3d(@x; @y; @z) {
+  -webkit-transform: translate3d(@x, @y, @z);
+  transform        : translate3d(@x, @y, @z);
+}
+
+.rotate(@degrees) {
+  -webkit-transform: rotate(@degrees);
+  -ms-transform    : rotate(@degrees); // IE9 only
+  transform        : rotate(@degrees);
+}
+
+.rotateX(@degrees) {
+  -webkit-transform: rotateX(@degrees);
+  -ms-transform    : rotateX(@degrees); // IE9 only
+  -o-transform     : rotateX(@degrees);
+  transform        : rotateX(@degrees);
+}
+
+.rotateY(@degrees) {
+  -webkit-transform: rotateY(@degrees);
+  -ms-transform    : rotateY(@degrees); // IE9 only
+  -o-transform     : rotateY(@degrees);
+  transform        : rotateY(@degrees);
+}
+
+.transform-origin(@origin) {
+  -webkit-transform-origin: @origin;
+  -ms-transform-origin    : @origin; // IE9 only
+  transform-origin        : @origin;
+}
+
+.perspective(@perspective) {
+  -webkit-perspective: @perspective;
+  perspective        : @perspective;
+}
+
+.perspective-origin(@perspective) {
+  -webkit-perspective-origin: @perspective;
+  perspective-origin        : @perspective;
+}
+
+// Transitions
+.transition(@transition) {
+  -webkit-transition: @transition;
+  transition        : @transition;
+}
+
+.transition-property(@transition-property) {
+  -webkit-transition-property: @transition-property;
+  transition-property        : @transition-property;
+}
+
+.transition-delay(@transition-delay) {
+  -webkit-transition-delay: @transition-delay;
+  transition-delay        : @transition-delay;
+}
+
+.transition-duration(@transition-duration) {
+  -webkit-transition-duration: @transition-duration;
+  transition-duration        : @transition-duration;
+}
+
+.transition-timing-function(@timing-function) {
+  -webkit-transition-timing-function: @timing-function;
+  transition-timing-function        : @timing-function;
+}
+
+.transition-transform(@transition) {
+  -webkit-transition: -webkit-transform @transition;
+  transition        : transform @transition;
+}

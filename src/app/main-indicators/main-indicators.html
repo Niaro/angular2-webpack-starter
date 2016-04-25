@@ -1,0 +1,22 @@
+<section class="main-indicators card">
+  <div class="main-indicator" *ngFor="#mainIndicator of mainIndicators">
+    <h2 class="text-center">{{mainIndicator.title}}</h2>
+    <div *ngFor="#indicator of mainIndicator.indicators">
+      <div class="row indicator" *ngIf="indicator.title">
+        <div class="col-xs-5">{{indicator.title}}</div>
+        <div class="col-xs-7">
+          <span *ngIf="indicator.unit == '%'">
+            {{indicator.value}}{{indicator.unit}}
+          </span>
+          <span *ngIf="indicator.unit != '%'">
+            {{indicator.value | money}}
+            {{indicator.unit}}
+          </span>
+        </div>
+      </div>
+      <h2 class="text-center success" *ngIf="!indicator.title">
+        {{indicator.value}}{{indicator.unit}}
+      </h2>
+    </div>
+  </div>
+</section>

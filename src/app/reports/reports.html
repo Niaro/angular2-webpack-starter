@@ -1,0 +1,11 @@
+<div class="reports">
+  <main-indicators></main-indicators>
+  <charts>
+    <div class="card" *ngFor="#group of reportsGroups" [ngClass]="{quadro:group.number == 1 || group.number == 3, triple: group.number == 2}">
+        <div class="report" *ngFor="#report of group.reports">
+            <h2>{{report.title}}</h2>
+            <chart [src]="report"></chart>
+        </div>
+    </div>
+  </charts>
+</div>

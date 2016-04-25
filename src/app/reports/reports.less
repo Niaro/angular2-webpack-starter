@@ -1,0 +1,28 @@
+@import "../../less/imports.less";
+
+.reports {
+  .flex-container();
+
+  charts {
+    .flex-container(column nowrap);
+    width: 100%;
+
+    > .card {
+      .flex(1 0 auto);
+      .flex-container(row wrap);
+      width: 100%;
+
+      &:not(:first-child) {
+        margin-top: @spacing;
+      }
+
+      > .report {
+        .flex(1 0 50%);
+
+        h2 {
+          margin: 0;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+
+    <title>Сводки</title>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Сводки">
+
+    <!-- use http://www.favicon-generator.org/ to replace files in public/icon-->
+    <!-- end favicon -->
+
+    <!-- base url -->
+    <base href="<%= webpackConfig.metadata.baseUrl %>">
+  </head>
+
+  <body>
+
+    <app class="initializing">
+      <div class="sk-spinner sk-spinner-double-bounce">
+        <div class="sk-double-bounce1"></div>
+        <div class="sk-double-bounce2"></div>
+      </div>
+    </app>
+
+    <% if (webpackConfig.metadata.ENV === 'development') { %>
+      <!-- Webpack Dev Server reload -->
+      <script src="/webpack-dev-server.js"></script>
+    <% } %>
+
+  </body>
+</html>

@@ -1,0 +1,10 @@
+@import "../less/inspinia/variables.less";
+@spacing                 : 20px;
+@transition-duration     : 0.25s;
+@transition-duration-fast: 0.2s;
+@transition-easeOutSine  : cubic-bezier(0.390, 0.575, 0.565, 1.000);
+@transition-softBounce   : cubic-bezier(0.34, 1.41, 0.7, 1);
+@transition-function     : @transition-easeOutSine;
+@transition-default      : opacity @transition-duration @transition-function, fill @transition-duration @transition-function, color @transition-duration @transition-function, background @transition-duration @transition-function, border-color @transition-duration @transition-function, transform @transition-duration @transition-function, box-shadow @transition-duration @transition-function;
+@transition-fade-height  : opacity @transition-duration @transition-function, max-height @transition-duration @transition-function, padding @transition-duration @transition-function;
+@transition-max-height   : max-height @transition-duration @transition-function;

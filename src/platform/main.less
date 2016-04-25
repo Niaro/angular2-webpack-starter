@@ -1,0 +1,64 @@
+//main less vendors
+@import "~bootstrap/less/bootstrap.less";
+@import "../less/inspinia/style.less";
+@import "../less/imports.less";
+
+body {
+  background: @gray;
+}
+
+app {
+  &.initializing {
+    .flex-container-float-middle(column nowrap, fixed);
+  }
+
+  > .sk-spinner-double-bounce.sk-spinner {
+    width : 60px;
+    height: 60px;
+  }
+}
+
+.success {
+  color: @brand-success;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.card {
+  padding      : @spacing;
+  border-radius: 2px;
+  background   : white;
+}
+
+svg {
+  .bar {
+    .transition(@transition-default);
+    fill: @navy;
+  }
+
+  .bar-detail{
+    .transition(@transition-default);
+    font-weight: bold;
+    fill: @nav-bg;
+  }
+
+  .axis {
+    font: 10px sans-serif;
+  }
+
+  .axis line,
+  .axis path {
+    fill           : none;
+    stroke         : #000;
+    shape-rendering: crispEdges;
+  }
+
+  .x.axis path {
+    }
+}
+
+.hidden{
+  opacity: 0 !important;
+}
