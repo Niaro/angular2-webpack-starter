@@ -10,7 +10,8 @@
     > .card {
       .flex(1 0 auto);
       .flex-container(row wrap);
-      width: 100%;
+      width        : 100%;
+      padding-right: 0;
 
       &:not(:first-child) {
         margin-top: @spacing;
@@ -18,6 +19,7 @@
 
       > .report {
         .flex(1 0 50%);
+        padding-right: @spacing;
 
         h2 {
           margin: 0;

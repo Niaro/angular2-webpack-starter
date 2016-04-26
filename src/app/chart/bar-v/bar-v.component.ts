@@ -16,6 +16,7 @@ export class BarVComponent {
   data: Chart;
   svg: any;
   detailBox: any;
+
   private options: any = {
     margin: { top: 20, right: 0, bottom: 20, left: 50 },
 
@@ -29,12 +30,14 @@ export class BarVComponent {
   };
 
   constructor(public appState: AppState, private _elementRef: ElementRef) {
-    var barHost: any = _elementRef.nativeElement;
+    let barHost: any = _elementRef.nativeElement;
     let opts = this.options;
-    this.svg = d3.select(barHost).append('svg')
+    this.svg = d3.select(barHost)
+      .append('svg')
       .attr('width', opts.width + opts.margin.left + opts.margin.right)
       .attr('height', opts.height + opts.margin.top + opts.margin.bottom)
       .append('g')
+      .attr('opacity', 0)
       .attr('transform', `translate(${opts.margin.left}, ${opts.margin.top})`);
   }
 
@@ -75,53 +78,62 @@ export class BarVComponent {
     y.domain([0, d3.max(valueData, d => d.y_axis)]);
 
     let svg = this.svg;
-    let detailBox = svg.append('svg:text')
-      .attr('dy', '-10px')
-      .attr('class', 'bar-detail')
-      .attr('text-anchor', 'right');
+    svg
+      .transition()
+      .attr('opacity', 0)
+      .each('end', function() {
+      svg.selectAll('.bar, g, .bar-detail').remove();
 
-    svg.append('g')
-      .attr('class', 'x axis')
-      .attr('transform', `translate(0, ${opts.height})`)
-      .call(xAxis);
+      let detailBox = svg.append('svg:text')
+        .attr('dy', '-10px')
+        .attr('class', 'bar-detail')
+        .attr('text-anchor', 'right');
 
-    svg.append('g')
-      .attr('class', 'y axis')
-      .call(yAxis)
-      .append('text')
-      .attr('y', 2)
-      .attr('dx', '-8')
-      .style('text-anchor', 'end')
-      .text(yAxisLabel);
+      svg.append('g')
+        .attr('class', 'x axis')
+        .attr('transform', `translate(0, ${opts.height})`)
+        .call(xAxis);
 
-    svg.selectAll('.bar')
-      .data(valueData)
-      .enter().append('rect')
-      .attr('class', 'bar')
-      .attr('x', d => x(d.x_axis))
-      .attr('width', x.rangeBand())
-      .attr('y', d => y(d.y_axis))
-      .attr('height', d => opts.height - y(d.y_axis))
-      .on('mouseover', function(d, i, j) {
+      svg.append('g')
+        .attr('class', 'y axis')
+        .call(yAxis)
+        .append('text')
+        .attr('y', 2)
+        .attr('dx', '-8')
+        .style('text-anchor', 'end')
+        .text(yAxisLabel);
 
-      var $bar = d3.select(this);
-      let barNode: any = $bar.node();
+      svg.selectAll('.bar')
+        .data(valueData)
+        .enter().append('rect')
+        .attr('class', 'bar')
+        .attr('x', d => x(d.x_axis))
+        .attr('width', x.rangeBand())
+        .attr('y', d => y(d.y_axis))
+        .attr('height', d => opts.height - y(d.y_axis))
+        .on('mouseover', function(d, i, j) {
 
-      detailBox
-        .text(yDataFormat(d.y_axis))
-        .attr('x', (x.range()[i] + barNode.getBBox().width / 2) - detailBox.node().getBBox().width / 2)
-        .attr('y', y(d.y_axis))
-        .style('opacity', 1);
+        var $bar = d3.select(this);
+        let barNode: any = $bar.node();
 
-      $bar
-        .style('opacity', 0.7);
-    })
-      .on('mouseout', function() {
-      svg.select('.bar-detail')
-        .style('opacity', 0);
+        detailBox
+          .text(yDataFormat(d.y_axis))
+          .attr('x', (x.range()[i] + barNode.getBBox().width / 2) - detailBox.node().getBBox().width / 2)
+          .attr('y', y(d.y_axis))
+          .style('opacity', 1);
 
-      d3.select(this)
-        .style('opacity', 1.0);
+        $bar
+          .style('opacity', 0.7);
+      })
+        .on('mouseout', function() {
+        svg.select('.bar-detail')
+          .style('opacity', 0);
+
+        d3.select(this)
+          .style('opacity', 1.0);
+      });
+
+      svg.transition().attr('opacity', 1);
     });
   }
 

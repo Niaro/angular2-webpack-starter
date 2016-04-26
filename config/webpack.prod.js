@@ -34,7 +34,7 @@ module.exports = webpackMerge(commonConfig, {
   // Switch loaders to debug mode.
   //
   // See: http://webpack.github.io/docs/configuration.html#debug
-  debug: true,
+  debug: false,
 
   // Developer tool to enhance debugging
   //

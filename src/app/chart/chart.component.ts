@@ -2,7 +2,7 @@ import {Component, Input} from 'angular2/core';
 import {AppState} from '../app.service';
 
 import {Report} from '../reports/report';
-import {Chart} from './chart';
+import {Chart, ChartTime} from './chart';
 
 import {BarVComponent} from './bar-v';
 
@@ -17,16 +17,27 @@ export class ChartComponent {
   @Input('src')
   report: Report;
   chartData: Chart;
+  chartTime: ChartTime = ChartTime.year;
+  isTimed: boolean = false;
+
   constructor(public appState: AppState) {
 
   }
 
   ngOnChanges() {
-    let isTimed = _.has(this.report.values, 'year');
+    this.isTimed = _.has(this.report.values, ChartTime.year);
+    this.chartData = this.isTimed ? this.getChartData(this.chartTime) : this.getChartData();
+  }
 
-    this.chartData = {
+  switchTime(chartTime: ChartTime) {
+    this.chartTime = chartTime;
+    this.chartData = this.getChartData(chartTime);
+  }
+
+  getChartData(chartTime?: ChartTime) {
+    return {
       unit: this.report.unit,
-      axisDataes: isTimed ? this.report.values['year'] : this.report.values
+      axisDataes: chartTime ? this.report.values[chartTime] : this.report.values
     };
   }
 

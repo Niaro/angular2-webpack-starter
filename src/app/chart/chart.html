@@ -1,6 +1,6 @@
-<div>
-  <button class="btn btn-primary" (click)="switchTime('year')">Год</button>
-  <button class="btn btn-primary" (click)="switchTime('quarter')">Квартал</button>
-  <button class="btn btn-primary" (click)="switchTime('month')">Месяц</button>
+<div class="btn-group pull-right" *ngIf=isTimed>
+  <button class="btn btn-success btn-outline btn-xs" [class.active] = "chartTime == 'year'" (click)="switchTime('year')">Год</button>
+  <button class="btn btn-success btn-outline btn-xs" [class.active] = "chartTime == 'quarter'" (click)="switchTime('quarter')">Квартал</button>
+  <button class="btn btn-success btn-outline btn-xs" [class.active] = "chartTime == 'month'" (click)="switchTime('month')">Месяц</button>
 </div>
 <bar-v [data]="chartData" *ngIf="report.chart == 'bar-v'"></bar-v>

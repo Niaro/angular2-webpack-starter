@@ -1,9 +1,16 @@
-export type ChartType =
-    "line"
-    | "circle"
-    | "bar-v"
-    | "bar-v line"
-    | "bar-h";
+export enum ChartType {
+  line = <any> 'line',
+  circle = <any> 'circle',
+  barV = <any> 'bar-v',
+  barVLine = <any> 'bar-v-line',
+  barH = <any> 'bar-h'
+}
+
+export enum ChartTime {
+  year = <any> 'year',
+  quarter = <any> 'quarter',
+  month = <any> 'month'
+}
 
 export class AxisData {
   x: any;
@@ -11,6 +18,6 @@ export class AxisData {
 }
 
 export class Chart {
-    unit: string;
-    axisDataes: AxisData[];
+  unit: string;
+  axisDataes: AxisData[];
 }
