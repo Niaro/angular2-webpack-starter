@@ -49,7 +49,7 @@
     "postinstall": "npm run typings -- install",
 
     "version": "npm run build",
-      "postversion": "git push && git push --tags"
+      "postversion": "git push && git push --tags",
 
     "start": "npm run server:dev:hmr",
 
