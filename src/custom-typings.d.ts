@@ -33,6 +33,7 @@ import * as _ from 'lodash'
 // Extra variables that live on Global that will be replaced by webpack DefinePlugin
 declare var ENV: string;
 declare var HMR: boolean;
+/* tslint:disable:interface-name */
 interface GlobalEnvironment {
   ENV;
   HMR;
@@ -113,3 +114,4 @@ interface Thenable<T> {
     onRejected?: (error: any) => void): Thenable<U>;
   catch<U>(onRejected?: (error: any) => U | Thenable<U>): Thenable<U>;
 }
+/* tslint:enable:interface-name */

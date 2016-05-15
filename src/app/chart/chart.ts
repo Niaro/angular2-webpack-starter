@@ -1,3 +1,5 @@
+import {Report} from '../reports/report';
+
 export enum ChartType {
   line = <any> 'line',
   circle = <any> 'circle',
@@ -18,6 +20,6 @@ export class AxisData {
 }
 
 export class Chart {
-  unit: string;
+  report: Report;
   axisDataes: AxisData[];
 }

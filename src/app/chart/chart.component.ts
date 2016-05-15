@@ -36,7 +36,7 @@ export class ChartComponent {
 
   getChartData(chartTime?: ChartTime) {
     return {
-      unit: this.report.unit,
+      report: this.report,
       axisDataes: chartTime ? this.report.values[chartTime] : this.report.values
     };
   }

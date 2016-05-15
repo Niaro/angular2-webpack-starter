@@ -12,6 +12,7 @@ const commonConfig = require('./webpack.common.js'); // the settings that are co
 
 const DefinePlugin = require('webpack/lib/DefinePlugin');
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
+const BellOnBundlerErrorPlugin = require('bell-on-bundler-error-plugin');
 
 /**
  * Webpack Constants
@@ -51,7 +52,7 @@ module.exports = webpackMerge(commonConfig, {
    * See: http://webpack.github.io/docs/configuration.html#devtool
    * See: https://github.com/webpack/docs/wiki/build-performance#sourcemaps
    */
-  devtool: 'cheap-module-eval-source-map',
+  devtool: 'cheap-module-source-map',
 
   /**
    * Options affecting the output of the compilation.
@@ -113,6 +114,7 @@ module.exports = webpackMerge(commonConfig, {
     }),
 
     new ExtractTextPlugin("css/[name].css"),
+	new BellOnBundlerErrorPlugin()
   ],
 
   /**

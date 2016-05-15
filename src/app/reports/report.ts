@@ -10,4 +10,5 @@ export class Report {
   values: any;
   absolute: number;
   absoluteUnit: string;
+  yAxisTitle: string;
 }

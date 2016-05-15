@@ -191,8 +191,8 @@ module.exports = webpackMerge(commonConfig, {
    * See: https://github.com/wbuchwalter/tslint-loader
    */
   tslint: {
-    emitErrors: true,
-    failOnHint: true,
+    emitErrors: false,
+    failOnHint: false,
     resourcePath: 'src'
   },
 

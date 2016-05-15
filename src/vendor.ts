@@ -3,6 +3,8 @@
 // at the entry point of the async loaded file. Also see custom-typings.d.ts as you also need to
 // run `typings install x` where `x` is your module
 
+require('highcharts/highcharts');
+
 // Angular 2
 import 'angular2/platform/browser';
 import 'angular2/platform/common_dom';
@@ -12,7 +14,7 @@ import 'angular2/http';
 import 'angular2/router';
 
 import 'lodash';
-import 'd3';
+import 'ng2-highcharts/ng2-highcharts';
 
 // RxJS
 import 'rxjs/add/operator/map';
